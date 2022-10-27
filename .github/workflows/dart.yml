@@ -1,0 +1,13 @@
+name: Flutter Test
+
+on:
+  push:
+    branches: [main]
+
+
+jobs:
+  run-flutter-test:
+    run-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
