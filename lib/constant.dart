@@ -6,3 +6,5 @@ const kSecondaryColor = Color(0xff1c1c1c);
 const kThirdColor = Color(0xff313131);
 const kFourthColor = Color.fromARGB(255, 219, 219, 219);
 const kWhite = Color(0xffece9e5);
+
+String wa = "081280001234";

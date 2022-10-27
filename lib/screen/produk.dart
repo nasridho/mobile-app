@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:baru/constant.dart';
+import 'package:baru/screen/detail_produk.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/gestures.dart';
@@ -12,6 +13,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:baru/screen/login.dart';
 import 'package:baru/screen/promo.dart';
 import 'package:file_picker/file_picker.dart';
+
+import 'package:baru/fitur/formatRupiah.dart';
+
+
 
 
 
@@ -793,11 +798,12 @@ class _ProdukScreenState extends State<ProdukScreen> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 4),
-                                          child: Text('Rp${documentSnapshot['banderol'].toInt().toString()}', style: TextStyle(decoration: TextDecoration.lineThrough, fontSize: 12)),
+                                          child: Text('${CurrencyFormat.convertToIdr(documentSnapshot['banderol'].toInt(), 0)}', style: TextStyle(decoration: TextDecoration.lineThrough, fontSize: 12)),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(bottom: 8),
-                                          child: Text('Rp${documentSnapshot['price'].toInt().toString()}', style: TextStyle(fontWeight: FontWeight.bold, fontSize:16)),
+                                          child: Text('${CurrencyFormat.convertToIdr(documentSnapshot['price'].toInt(), 0)}', style: TextStyle(fontWeight: FontWeight.bold, fontSize:16)),
+                                          
                                         )
                                     ],
                                   ),
@@ -857,8 +863,18 @@ class _ProdukScreenState extends State<ProdukScreen> {
                                       
                                       IconButton(
                                           icon: const Icon(Icons.info),
-                                          onPressed: () =>
-                                              _createOrUpdate(documentSnapshot)),
+                                          onPressed: () {
+                                            Navigator.push(context, 
+                                            MaterialPageRoute(builder: (context) => DetailScreen(
+                                              name: documentSnapshot['name'],
+                                              brand: documentSnapshot['brand'],
+                                              ukuran: sortedUkuran,
+                                              gambar:  documentSnapshot['gambar'],
+                                              harga:  documentSnapshot['price'],
+                                              banderol:  documentSnapshot['banderol'],
+                                            )));
+                                          },
+                                      ),
                                       isLoggedIn?               
                                       IconButton(
                                           icon: const Icon(Icons.edit),
@@ -911,3 +927,4 @@ class _ProdukScreenState extends State<ProdukScreen> {
   }
 
 }
+
