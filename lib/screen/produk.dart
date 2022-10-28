@@ -318,7 +318,7 @@ class _ProdukScreenState extends State<ProdukScreen> {
                               controller: _banderolController,
                               style: TextStyle(color: kSecondaryColor),
                               decoration: const InputDecoration(
-                                labelText: 'Harga Banderol',
+                                labelText: 'Harga Retail',
                                 hintStyle: TextStyle(color: kThirdColor),
                                 enabledBorder: InputBorder.none,
                                 focusedBorder: InputBorder.none,
@@ -328,10 +328,10 @@ class _ProdukScreenState extends State<ProdukScreen> {
 
                           // Text(ukurans.toString()),
                           // Text(onlyKey.toString()),
-                          Text(onlyValue.toString()),
+                          // Text(onlyValue.toString()),
                           // Text(dataUkuran.toString()),
                           // Text(controllersKey.toString()),
-                          Text(ukurans.toString()),
+                          // Text(ukurans.toString()),
 
                           
                           Row(
@@ -816,7 +816,19 @@ class _ProdukScreenState extends State<ProdukScreen> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(top: 8.0),
-                                        child: Text(documentSnapshot['brand'], style: TextStyle(color: kThirdColor, fontSize: 15) ),
+                                        child: Row(
+                                          children: [
+                                            Text("${documentSnapshot['brand']}  ", style: TextStyle(color: kThirdColor, fontSize: 15) ),
+                                            Container(
+                                              padding: EdgeInsets.all(5),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(4),
+                                                    color: kSecondaryColor
+                                              ),
+                                              child: Text(documentSnapshot['jenis'], style: TextStyle(color: kWhite, fontSize: 10) )
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(bottom: 10),
@@ -868,6 +880,7 @@ class _ProdukScreenState extends State<ProdukScreen> {
                                             MaterialPageRoute(builder: (context) => DetailScreen(
                                               name: documentSnapshot['name'],
                                               brand: documentSnapshot['brand'],
+                                              jenis: documentSnapshot['jenis'],
                                               ukuran: sortedUkuran,
                                               gambar:  documentSnapshot['gambar'],
                                               harga:  documentSnapshot['price'],

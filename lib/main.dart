@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     
       // Remove the debug banner
       debugShowCheckedModeBanner: false,
-      title: 'Beruang Sports',
+      title: 'Sportiv',
       home: HomeScreen(),
     
     );

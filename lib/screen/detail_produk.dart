@@ -5,6 +5,7 @@ import '../fitur/formatRupiah.dart';
 
 class DetailScreen extends StatelessWidget {
   final String name;
+  final String jenis;
   final String brand;
   final String gambar;
   final double harga;
@@ -14,6 +15,7 @@ class DetailScreen extends StatelessWidget {
   const DetailScreen( {
     Key? key,
     required this.name,
+    required this.jenis,
     required this.brand,
     required this.ukuran,
     required this.gambar,
@@ -53,7 +55,19 @@ class DetailScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(brand, style: TextStyle(color: kThirdColor, fontSize: 20) ),
+                      child: Row(
+                        children: [
+                          Text("${brand}  ", style: TextStyle(color: kThirdColor, fontSize: 20) ),
+                          Container(
+                            padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  color: kSecondaryColor
+                            ),
+                            child: Text(jenis, style: TextStyle(color: kWhite, fontSize: 15) )
+                          ),
+                        ],
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 24),
@@ -69,8 +83,9 @@ class DetailScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(right: 32.0),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Harga Banderol:"),
+                              Text("Harga Retail:"),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                                 child: Text('${CurrencyFormat.convertToIdr(banderol.toInt(), 0)}', style: TextStyle(decoration: TextDecoration.lineThrough, fontSize: 20)),
@@ -141,7 +156,7 @@ class DetailScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
-                      child: Text("Untuk pemesanan hubungi:", style: TextStyle(color: kThirdColor, fontSize: 16) ),
+                      child: Text("Untuk pemesanan hubungi WhatsApp:", style: TextStyle(color: kThirdColor, fontSize: 16) ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 4.0, bottom: 32),
